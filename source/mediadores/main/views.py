@@ -140,7 +140,7 @@ def mediators_list(request, institutionId):
         searchParams = searchForm.getSearchParams(institution)
         
         if searchParams:
-            mediatorsList = search(searchParams, institution)
+            mediatorsList = search(searchParams)
             
             response = render_to_response("main/mediators_list.html",
                               {'mediators': mediatorsList,
