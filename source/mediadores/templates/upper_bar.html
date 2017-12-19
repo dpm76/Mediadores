@@ -1,0 +1,35 @@
+{% load i18n %}
+<div id="upper_bar">
+	<img id="upperBarLogo" src="{{ APP_LOGO_URL }}" alt="Mediadores"/>			 	
+	<div id="upperBarMenu">									
+		{% if user.is_authenticated %}
+			
+			{% trans 'Bienvenido/a' %}, <span style="font-weight:bold">
+			{% if user.get_profile and user.get_profile.name %}
+				{{ user.get_profile.name }}
+			{% else %}
+			{% if user.first_name != '' %}
+				{{ user.first_name }}
+			{% else %}
+				{{ user.username }}
+			{% endif %}
+			{% endif %}
+			</span> | 
+		
+			<a href="/userconfig">
+				<span id="configUpperBarLink" title="{% trans 'Configuraci&oacute;n' %}"></span>
+			</a> 
+			|
+			<a href="/accounts/logout">
+				<span id="logoutUpperBarLink" title="{% trans 'Salir' %}"></span>
+			</a>
+		{% else %}	
+			<a href="/accounts/login/?next=/">
+				<span id="loginUpperBarLink" title="{% trans 'Iniciar sesi&oacute;n' %}"></span>
+			</a>
+		{% endif %}
+	</div>
+</div>
+	
+	
+	

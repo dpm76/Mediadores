@@ -1,0 +1,79 @@
+{% extends "main/edit_mediator.html" %}
+{% load i18n %}
+
+{% block extraCSS %}
+	<link rel="stylesheet" href="/static-files/css/home_mediator.css" />
+{% endblock %}
+
+{% block scriptInit %}
+	$("#id_nif").prop("readonly",true).addClass("ui-state-disabled");
+	$("#id_expertiseArea, #id_degree ").multiselect({sortable:false});
+	{% if dataUpdated %}
+	$("#updatedDlg").dialog({
+		modal: true,
+		buttons: {
+			Ok: function(){
+				$(this).dialog("close");
+			}
+		}
+	});
+	{% endif %}
+{% endblock %}
+
+{% block nav_path %}
+{% endblock %}
+
+{% block nonEditableFields %}
+	<div id="nonEditableFields">
+		<div id="degree">
+			<table>
+				<tr>
+					<th>Titulaci&oacute;n</th>
+					<td>
+						<ul>
+							{% for degree in mediator.degree.all %}
+								<li>{{ degree }}</li>
+							{% endfor %}
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="expertiseArea">
+			<table>
+				<tr>
+					<th>&Aacute;reas de experiencia</th>
+					<td>
+						<ul>
+							{% for area in mediator.expertiseArea.all %}
+								<li>{{ area }}</li>
+							{% endfor %}
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="insuranceData">
+			<table>
+				<tr><th>Entidad aseguradora:</th><td>{{ mediator.insuranceEntity.name }}</td></tr>
+				<tr><th>P&oacute;liza:</th><td>{{ mediator.insuranceContract }}</td></tr>
+				<tr><th>Expiraci&oacute;n de la p&oacute;liza:</th><td>{{ mediator.insuranceExpiration }}</td></tr>
+			</table>
+		</div>
+		<p class="helptext">					 
+			Para cualquier actualizaci&oacute;n o rectificaci&oacute;n de los datos de este apartado, por favor,
+			 dir&iacute;jase a la entidad mediadora en la que sus datos est&aacute;n registrados.
+		</p>
+	</div>
+{% endblock %}
+
+{% block afterForm %}
+	{% if dataUpdated %}
+		<div id="updatedDlg" title="Datos guardados">
+			<p>
+				<span class="ui-icon ui-icon-info"></span>
+				Sus datos han sido guardados en nuestro sistema.
+			</p>
+		</div>
+	{% endif %}
+{% endblock %}

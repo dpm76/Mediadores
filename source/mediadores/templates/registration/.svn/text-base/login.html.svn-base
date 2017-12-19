@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head %}
+	{% include "jqueryui-headers.html" %}
+	<link rel="stylesheet" type="text/css" href="/static-files/css/forms.css">
+	<link rel="stylesheet" type="text/css" href="/static-files/css/login.css">
+	
+	<script type="text/javascript">
+		$(function(){
+			$( "input[type=submit]" ).button();
+			$( "#id_email" ).focus();	
+			$( "#loginDlg" ).dialog({
+				modal:true,
+				position: "center",
+				width:350,
+				close:function(ev, ui){
+					window.location.href="/";
+				}
+			});
+			$( "#resetPasswordLink" ).click(function(event){
+				event.preventDefault();
+				var param = "";
+				var loginEmailField = $( "#login-form #id_email" );
+				var resetPasswdEmailField = $( "#id_resetPasswordForm #id_email" );
+				if((loginEmailField.val() != null) && (loginEmailField.val() != "")){
+					resetPasswdEmailField.val(loginEmailField.val());
+				}
+				$( "#id_resetPasswordForm" ).submit();
+				return false;
+			});
+		});
+	</script>
+{% endblock %}
+
+{% block content %}
+<div id="loginDlg" title="Inicio de sesi&oacute;n">	
+	{% if form.errors and not form.non_field_errors and not form.this_is_the_login_form.errors %}
+		<p class="errorlist">
+		{% blocktrans count form.errors.items|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+		</p>
+	{% endif %}
+	
+	{% if form.non_field_errors %}
+		{% for error in form.non_field_errors %}
+		<p class="errorlist">
+		    {{ error }}
+		</p>
+		{% endfor %}
+	{% endif %}
+	
+	<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+		<table>  	
+		    {% if not form.this_is_the_login_form.errors %}
+		    	<tr><td colspan="2">
+		    	{{ form.email.errors }}
+		    	</td></tr>
+		    {% endif %}
+		    <tr>
+		    	<td><label for="id_email" class="required">{% trans 'Email:' %}</label></td>
+		    	<td>{{ form.email }}</td>
+			</tr>
+		    {% if not form.this_is_the_login_form.errors %}
+		    	<tr><td colspan="2">
+		    	{{ form.password.errors }}
+		    	</td></tr>
+		    {% endif %}
+		    <tr>
+		    	<td><label for="id_password" class="required">{% trans 'Password:' %}</label></td>
+		    	<td>{{ form.password }}</td>
+			</tr>
+		</table>
+		
+		<input type="hidden" name="this_is_the_login_form" value="1" />
+		<input type="hidden" name="next" value="{{ next }}" >
+		<div id="submitButtonArea">
+			<input type="submit" value="{% trans 'Log in' %}" />
+		</div>
+		<div id="resetPassword">
+			<a id="resetPasswordLink" href="#">He olvidado mi contrase&ntilde;a</a>
+		</div>
+	</form>
+
+	<form id="id_resetPasswordForm" name="resetPasswordForm" method="post" action="/reset-password/">
+	{% csrf_token %}
+		<input type="hidden" id="id_email" name="email">
+	</form>
+</div>
+{% endblock %}

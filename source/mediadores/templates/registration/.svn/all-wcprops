@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/mediadores/!svn/ver/27/mediadores/mediadores/templates/registration
+END
+login.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/mediadores/!svn/ver/27/mediadores/mediadores/templates/registration/login.html
+END
+base_site.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/mediadores/!svn/ver/24/mediadores/mediadores/templates/registration/base_site.html
+END
+logged_out.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/mediadores/!svn/ver/24/mediadores/mediadores/templates/registration/logged_out.html
+END
+new_user.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/mediadores/!svn/ver/3/mediadores/mediadores/templates/registration/new_user.html
+END

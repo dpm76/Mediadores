@@ -1,0 +1,11 @@
+﻿Estimado {{ iadmin.name }},
+
+Se ha creado su usuario de administración del Registro de Mediadores de {{ iadmin.institution.name }}.
+
+Podrá acceder en la dirección:
+{{ siteUrl }}
+
+Utilizando su correo electrónico ({{ iadmin.user.email }}) como nombre de usuario y como contraseña: {{ passwd }}
+
+Atentamente,
+{{ iadmin.institution.name }} 

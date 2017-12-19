@@ -1,0 +1,329 @@
+{% extends "main/mediators_list.html" %}
+{% load i18n %}
+
+{% block head %}
+	{{ block.super }}
+	<link rel="stylesheet" href="/static-files/css/forms.css" />	
+	<link rel="stylesheet" href="/static-files/css/home_admin.css" />
+	<link rel="stylesheet" href="/static-files/css/admin_nav_buttons.css" />
+	<link rel="stylesheet" href="/static-files/css/multiselect/ui.multiselect.css" />	
+	{{ searchForm.media }}
+	<script type="text/javascript" src="/static-files/js/multiselect/ui.multiselect.js"></script>
+	<script type="text/javascript" src="/static-files/js/multiselect/locale/ui-multiselect-es.js"></script>
+	
+{% endblock %}
+
+{% block nav_path %}
+{% endblock %}
+
+{% block jqueryInit %}
+	$( "#tabs" ).tabs();	
+	$( ".insuranceEntityInfo" ).dialog({
+		autoOpen: false,
+		modal: true,
+		width: "35em",
+		show:{
+			effect: "fade",
+			duration: 500
+		},
+		hide:{
+			effect: "fade",
+			duration: 500
+		}
+	});
+	var monitorDeleteId = 0;
+	$( "#confirmDeleteDlg" ).dialog({
+		autoOpen: false,
+		modal: true,
+		show:{
+			effect: "fade",
+			duration: 500
+		},
+		hide:{
+			effect: "fade",
+			duration: 500
+		},
+		buttons: {
+			Aceptar: function(){
+				$(this).dialog("close");
+				if(monitorDeleteId != 0){
+					window.location.href = "/delete/" + monitorDeleteId + "/";
+				}
+			},
+			Cancelar: function(){
+				$(this).dialog("close");
+			}
+		}
+	});
+	$( ".addMediatorButton" ).button().click(function(event){
+		event.preventDefault();
+		window.location.href = "/add/";
+		return false;
+	});
+	{% for mediator in mediators %}
+		$("#deleteButton{{ mediator.id }}").button().click(function(event){
+			event.preventDefault();
+			monitorDeleteId = {{ mediator.id }};
+			$("#confirmDeleteDlgText").html("Se va a eliminar el mediador \"{{ mediator.name }} {{ mediator.surname }}\".");
+			$("#confirmDeleteDlg").dialog("open");
+			return false;
+		});
+		$("#editButton{{ mediator.id }}").button().click(function(event){
+			event.preventDefault();
+			window.location.href = "/edit/{{ mediator.id }}/";
+			return false;
+		});
+		{% if not mediator.hasInsurance or mediator.isInsuranceExpired %}
+			$("#requestButton{{ mediator.id }}").prop("disabled","disabled");
+			$("#requestButton{{ mediator.id }}").addClass("ui-state-disabled");
+		{% endif %}
+	{% endfor %}
+	$( "#mediatorsButton" ).prop("disabled", "disabled");
+	$( "#mediatorsButton" ).addClass("ui-state-active");
+	$( "#mediatorsButton" ).removeClass("ui-state-disabled");
+	$( "#tabs" ).hide();
+	$( "#filterToggle" ).click(function(event){
+		event.preventDefault();
+		if($("#tabs").is(":visible")){
+			$("#tabs").hide("blind",null,500,null);
+			$("span", this).text("Mostrar filtro");
+		}else{
+			$("#tabs").show("blind",null,500,null);
+			$("span", this).text("Ocultar filtro");
+		}
+		return false;
+	});
+	$( "select" ).multiselect({sortable:false});
+	$( ".sendButton" ).click(function(event){
+		$("#id_searchForm").submit();
+	});
+{% endblock %}
+
+{% block contentTitle %}
+	<h1>Administraci&oacute;n</h1>
+{% endblock %}
+
+{% block beforeList %}
+	{% include "main/admin_nav_buttons.html" %}
+	<table id="filterTable">
+		<tr>
+			<td id="filterCell">
+				<button id="filterToggle">Mostrar filtro</button>
+			</td>
+			<td>
+				<form id="id_searchForm" name="searchForm" method="post" action=".">
+					{% csrf_token %}
+					{% for hidden in searchForm.hidden_fields %}
+			    		{{ hidden }}
+					{% endfor %}
+					
+					<div id="tabs">
+						<ul>
+							<li><a href="#simpleFilter">B&aacute;sico</a></li>
+							<li><a href="#expertiseAreaFilter">&Aacute;reas</a></li>
+							<li><a href="#degreeFilter">Titulaciones</a></li>
+						</ul>
+						<div id="simpleFilter">
+							<table>
+								<tr><td id="simpleFilterCell">
+								<table>				
+									<tr><th>{{ searchForm.nif.label }}</th><td>{{ searchForm.nif }}</td></tr>
+									<tr><th>{{ searchForm.name.label }}</th><td>{{ searchForm.name }}</td></tr>
+									<tr><th>{{ searchForm.expertiseKeywords.label }}</th><td>{{ searchForm.expertiseKeywords }}</td></tr>
+								</table>
+								</td>								
+								<td>
+							<div class="buttonArea">
+								<button class="sendButton">Encontrar</button>
+							</div>
+							</td>
+							</tr>
+							</table>
+							
+						</div>
+						<div id="expertiseAreaFilter">
+							<table>
+								<tr>
+									<th>{{ searchForm.expertiseAreas.label }}</th>
+								</tr>
+								<tr>
+									<td>{{ searchForm.expertiseAreas }}</td>
+									<td>
+										<div class="buttonArea">
+											<button class="sendButton">Encontrar</button>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div id="degreeFilter">
+							<table>
+								<tr>
+									<th>{{ searchForm.degree.label }}</th>
+								</tr>
+								<tr>
+									<td>{{ searchForm.degree }}</td>
+									<td>
+										<div class="buttonArea">
+											<button class="sendButton">Encontrar</button>
+										</div>						
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+			</td>
+		</tr>
+	</table>
+	<div class="addMediatorArea">
+		<button class="addMediatorButton"><table><tr><td><span class="ui-icon ui-icon-plus"></span></td><td>Nuevo</td></tr></table></button>
+	</div>
+	<div id="confirmDeleteDlg" title="Confirmaci&oacute;n de borrado">
+		<table>
+			<tr>
+				<td><span class="ui-icon ui-icon-notice"></span>&nbsp;</td>
+				<td>
+					<div id="confirmDeleteDlgText"></div>
+					<p>Todos sus datos ser&aacute;n eliminados.</p>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><p>&iquest;Desea continuar?</p></td>
+			</tr>
+		</table>		
+	</div>
+{% endblock %}
+
+{% block preTitle %}
+	<tr>
+		<td class="title">
+			{{ mediator.nif }}
+		</td>
+	</tr>
+{% endblock %}
+
+{% block postTitle %}
+{% endblock %} 
+
+{% block rowHeaderRightExtraSpace %}
+	<div class="rowHeaderButtons">
+		<button id="editButton{{ mediator.id }}"><span class="ui-icon ui-icon-pencil"></span></button>
+		<button id="deleteButton{{ mediator.id }}"><span class="ui-icon ui-icon-trash"></span></button>
+	</div>
+{% endblock %}
+
+{% block rowHeaderBottomExtraSpace %}
+	{% if not mediator.hasInsurance %}
+		<div class="headerAlert">
+			<table class="tableAlert">
+				<tr>
+					<td>No se ha registrado ning&uacute;n seguro.</td>
+					<td><span class="ui-icon ui-icon-alert"></span></td>
+				</tr>
+			</table>
+		</div>
+	{% else %}	
+	{% if mediator.isInsuranceExpired %}
+		<div class="headerAlert">
+			<table class="tableAlert">
+				<tr>
+					<td>La p&oacute;liza del seguro ha expirado.</td>
+					<td><span class="ui-icon ui-icon-alert"></span></td>
+				</tr>
+			</table>
+		</div>
+	{% endif %}
+	{% endif %}
+{% endblock %}
+
+{% block mediatorPrivateInfo %}
+	<h4>Datos de contacto</h4>
+	<div class="info">
+		<table>
+			<tr><th class="data">Direcci&oacute;n</th><td>{{ mediator.address }} {{ mediator.postalCode }} {{ mediator.city }} {{ mediator.provinceName }}</td></tr>
+			{% if mediator.phoneNumber %}
+				<tr><th class="data">Tel&eacute;fono</th><td>{{ mediator.phoneNumber}}</td></tr>
+			{% endif %}
+			{% if mediator.mobileNumber %}
+				<tr><th class="data">Tel. m&oacute;vil</th><td>{{ mediator.mobileNumber }}</td></tr>
+			{% endif %}
+			{% if mediator.faxNumber %}
+				<tr><th class="data">Fax</th><td>{{ mediator.faxNumber }}</td></tr>
+			{% endif %}
+			{% if mediator.user.email %}
+				<tr><th class="data">e-mail</th><td><a href="mailto:{{ mediator.user.email }}">{{ mediator.user.email }}</a></td></tr>
+			{% endif %}
+			{% if mediator.website %}
+				<tr><th class="data">Sitio web</th><td><a href="{{ mediator.website }}">{{ mediator.website }}</a></td></tr>
+			{% endif %}
+		</table>
+	</div>
+	
+	<h4>Seguro de responsabilidad</h4>
+	<div class="insuranceEntityInfo" id="iei{{ mediator.id }}-{{ mediator.insuranceEntity.id }}" title="{{ mediator.insuranceEntity.name }}" >
+		<table>
+			<tr>
+				<th class="data">Tel&eacute;fono</th>
+				<td>{{ mediator.insuranceEntity.phone }}</td>
+			</tr>
+			<tr>
+				<th class="data">e-mail</th>
+				<td>{{ mediator.insuranceEntity.eMail }}</td>
+			</tr>
+			<tr>
+				<th class="data">Direcci&oacute;n</th>
+				<td>{{ mediator.insuranceEntity.address }}</td>
+			</tr>
+			<tr>
+				<th>&nbsp;</th>
+				<td>{{ mediator.insuranceEntity.postalCode}} {{ mediator.insuranceEntity.city }}</td>
+			</tr>
+			<tr>
+				<th class="data">Provincia</th>
+				<td>{{ mediator.insuranceEntity.provinceName }}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="info">
+		{% if mediator.hasInsurance %}
+			<table>
+				<tr>
+					<th class="data">Entidad aseguradora</th>
+					<td colspan="4">
+						<table>
+							<tr>
+								<td class="data">{{ mediator.insuranceEntity.name }}</td>
+								<td class="data"><button onclick="javascript: $( '#iei{{ mediator.id }}-{{ mediator.insuranceEntity.id }}' ).dialog( 'open' );"><span class="ui-icon ui-icon-info"></span></button></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th class="data">N&uacute;mero de p&oacute;liza</th>
+					<td>{{ mediator.insuranceContract }}</td>
+					<th>En vigor hasta</th>
+					<td>
+						{{ mediator.insuranceExpiration }}						
+					</td>
+					<td>
+						{% if mediator.isInsuranceExpired %}
+							<span class="ui-icon ui-icon-alert">&nbsp;</span>
+						{% endif %}
+					</td>
+				</tr>
+			</table>
+		{% else %}
+			No hay registrado ning&uacute;n seguro.
+		{% endif %}
+	</div>
+{% endblock %}
+
+{% block mediatorLink %}
+{% endblock %}
+
+{% block afterList %}
+	<div class="addMediatorArea">
+		<button class="addMediatorButton"><table><tr><td><span class="ui-icon ui-icon-plus"></span></td><td>Nuevo</td></tr></table></button>
+	</div>
+{% endblock %}

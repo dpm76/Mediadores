@@ -1,0 +1,6 @@
+#error_content
+{	
+	margin-top:2em;
+	color:red;
+	font-family: monospace;	
+}

@@ -1,0 +1,33 @@
+﻿Se ha recibido una petición de mediación.
+
+Nombre: {{ request.requester_name }} {{ request.requester_surname }}
+NIF: {{ request.requester_nif }}
+{% if not request.requester_byself %}
+Representado: {{ request.requester_representee }}
+{% endif %}
+{% if request.requester_phone %}
+Teléfono: {{ request.requester_phone }}
+{% endif %}
+{% if request.requester_mobile %}
+Teléfono móvil: {{ request.requester_mobile }}
+{% endif %}
+{% if request.requester_fax %}
+Fax: {{ request.requester_fax }}
+{% endif %}
+e-mail: {{ request.requester_email }}
+Dirección postal: {{ request.requester_address_street }}
+   {{ request.requester_address_postalcode }} {{ request.requester_address_city }}
+   {{ request.get_requester_address_province_display }}
+
+Mediador solicitado: {{ request.mediator.name }} {{ request.mediator.surname }} (NIF: {{ request.mediator.nif }})
+   
+Parte solicitante: {{ request.requester_party }}
+Parte contraria: {{ request.opponent_party }}
+
+Tipo de mediación: {{ request.get_mediation_mode_display }}
+Propósito:
+{{ request.purpose }}
+
+{% if request.amount > 0 %}
+Cantidad solicitada: {{ request.amount }} €
+{% endif %}

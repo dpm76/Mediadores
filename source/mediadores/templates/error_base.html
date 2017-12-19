@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_DOC_URL|default:"/static-files/" }}css/error.css" />
+{% endblock %}
+
+{% block nav_path %}
+	&gt; {% trans 'error' %}
+{% endblock %}
+
+{% block content %}
+	<div id="error_content">{% block error_content %}{% endblock %}</div>
+{% endblock %}	

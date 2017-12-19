@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head %}
+	{% include "jqueryui-headers.html" %}
+	<link rel="stylesheet" href="/static-files/css/forms.css" />
+	<link rel="stylesheet" href="/static-files/css/institution-selection.css" />
+	<script type="text/javascript">
+		$(function(){
+			{% for institution in institutions %}	
+			$("#marker_{{ institution.pk }}").tooltip().hover(
+					function(){
+						$(this).addClass("marker_hover", 250);				
+					},
+					function(){
+						$(this).removeClass("marker_hover", 250);						
+					});
+			{% endfor %}
+		});
+	</script>
+{% endblock %}
+
+{% block content %}
+	<h1>Registro de Mediadores</h1>
+	<p>Este es la web del Registro de Mediadores de las 
+	C&aacute;maras de Comercio e Industria de Castilla y Le&oacute;n.</p>
+	<p>Mediante el proceso de mediaci&oacute;n podr&aacute; ahorrar mucho m&aacute;s tiempo y dinero comparado con los procesos judiciales tradicionales.</p>
+	<p class="remark">Por favor, seleccione su C&aacute;mara m&aacute;s cercana para comenzar.</p>
+	<div id="map">
+		{% for institution in institutions %}
+			<a href="{{ institution.pk }}">
+				<div class="marker" id="marker_{{ institution.pk }}" title="{{ institution.name }}" style="left:{{ institution.mapX }}px;top:{{ institution.mapY }}px;">
+				</div>
+			</a>
+		{% endfor %} 
+	</div>
+	
+{% endblock %}

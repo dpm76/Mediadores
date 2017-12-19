@@ -1,0 +1,7 @@
+AuthName "mediacioncameral.org statistics"
+AuthType Basic
+AuthUserFile /home/davidpm.eu/domains/mediacioncameral.org/.stats-htpasswd
+require valid-user
+<Files .stats-htpasswd>
+deny from all
+</Files>

@@ -1,0 +1,37 @@
+#lopdAd
+{
+	font-size: small;
+	font-style: italic;
+	text-align: justify;
+	border-width: 1px;
+	border-style: dashed;
+	margin: 2em;
+	padding: 0.75em;	
+}
+
+#id_requester_address_postalcode
+{
+	width: 5em;
+}
+
+#id_amount
+{
+	width: 10em;
+}
+
+#id_requester_nif
+{
+	width: 15em;
+}
+
+#id_requester_phone,
+#id_requester_mobile,
+#id_requester_fax
+{
+	width: 15em;
+}
+
+#sendButton
+{
+	float:right;
+}

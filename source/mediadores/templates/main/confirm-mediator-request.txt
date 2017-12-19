@@ -1,0 +1,27 @@
+﻿Estimado {{request.requester_name}} {{request.requester_surname}},
+
+Hemos recibido su solicitud para realizar una mediación con la siguiente información:
+
+{% if not request.requester_byself %}
+Representado: {{request.requester_representee}}
+{% endif %}
+
+Mediador: {{request.mediator.name}} {{request.mediator.surname}}
+
+Parte solicitante: {{ request.requester_party }}
+Parte contraria: {{ request.opponent_party }}
+
+Tipo de mediación: {{ request.get_mediation_mode_display }}
+
+Asunto: 
+{{ request.purpose }}
+
+{% if request.amount > 0 %}
+Cantidad reclamada: {{ request.amount }} €
+{% endif %}
+
+
+En breve, nos pondremos en contacto con usted.
+
+Atentamente,
+{{ request.institution.name }}

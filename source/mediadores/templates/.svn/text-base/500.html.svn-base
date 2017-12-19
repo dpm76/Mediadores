@@ -1,0 +1,16 @@
+{% extends "error_base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'No disponible' %}{% endblock %}
+
+{% block error_content %}
+<h1>{% trans 'No disponible' %}</h1>
+
+    <p>
+    {% trans 'Le pedimos disculpas. La p&aacute;gina solicitada no est&aacute; disponible debido a un inconveniente con el servidor.' %}
+    </p>
+
+    <p>
+    {% trans 'El responsable de mantenimiento ha sido informado. Por favor, int&eacute;ntelo m&aacute;s tarde.' %}
+    </p>
+{% endblock %}

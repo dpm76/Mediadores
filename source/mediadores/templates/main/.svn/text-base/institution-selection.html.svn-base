@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head %}
+	{% include "jqueryui-headers.html" %}
+	<link rel="stylesheet" href="/static-files/css/forms.css" />
+	<link rel="stylesheet" href="/static-files/css/institution-selection.css" />
+	<script type="text/javascript">
+		$(function(){
+			$("#institutionSelectionDlg").dialog({
+				modal:false,
+				width:450
+			});
+			$("#sendButton").button().click(function(event){
+				event.preventDefault();
+				$("#id_institutionSelectionForm").submit();
+				return false;
+			});
+		});
+	</script>
+{% endblock %}
+
+{% block content %}
+	<div id="institutionSelectionDlg" title="Selecci&oacute;n de instituci&oacute;n de mediaci&oacute;n">
+		<p>
+			Por favor, para iniciar, seleccione una instituci&oacute;n.
+		</p>
+		<form id="id_institutionSelectionForm" name="institutionSelectionForm" method="post" action=".">
+			{% csrf_token %}
+			{{ institutionSelectionForm }}
+			<button id="sendButton">Iniciar</button>
+		</form>
+	</div>
+{% endblock %}

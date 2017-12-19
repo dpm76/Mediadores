@@ -1,0 +1,16 @@
+﻿{% if mediator.isCompany %}
+Estimados señores de {{ mediator.name }},
+{% else %}
+Estimado {{ mediator.name }} {{ mediator.surname }},
+{% endif %}
+
+Le informamos que ha sido creada su cuenta en el Registro de Mediadores de {{ institution.name }}.
+
+Puede acceder a los datos de su cuenta en la dirección:
+{{ siteUrl }}
+
+Utilizando como nombre de usuario su correo electrónico: {{ mediator.user.email }}
+y contraseña: {{ passwd }}
+
+Atentamente,
+{{ institution.name }}

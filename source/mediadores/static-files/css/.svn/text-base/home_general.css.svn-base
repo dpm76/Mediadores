@@ -1,0 +1,16 @@
+#buttonArea
+{
+	text-align: right;
+	margin: 2em;
+}
+
+th
+{
+	width:30%;
+}
+
+select[multiple]
+{
+	width: 30em;
+	height: 15em;
+}

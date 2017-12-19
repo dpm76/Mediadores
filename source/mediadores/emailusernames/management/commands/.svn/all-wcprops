@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/mediadores/!svn/ver/15/mediadores/mediadores/emailusernames/management/commands
+END
+loaddata.py
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/mediadores/!svn/ver/15/mediadores/mediadores/emailusernames/management/commands/loaddata.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/mediadores/!svn/ver/15/mediadores/mediadores/emailusernames/management/commands/__init__.py
+END
+dumpdata.py
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/mediadores/!svn/ver/15/mediadores/mediadores/emailusernames/management/commands/dumpdata.py
+END
+createsuperuser.py
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/mediadores/!svn/ver/15/mediadores/mediadores/emailusernames/management/commands/createsuperuser.py
+END

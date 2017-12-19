@@ -1,0 +1,17 @@
+input[type=text], input[type=password]
+{
+	width: 15em;
+	font-size: small;
+}
+
+#submitButtonArea
+{
+	text-align: right;
+	margin: 2em 1em 2em 1em;
+}
+
+#resetPassword
+{
+	font-size: x-small;
+	font-style: italic;
+}

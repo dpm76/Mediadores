@@ -1,0 +1,72 @@
+.headerAlert
+{
+	text-align: right;
+	font-weight: normal;
+	font-size: small;
+	font-style: italic;
+	color: #e00000;	
+}
+
+#simpleFilterCell
+{
+	width:80%;
+}
+
+.tableAlert
+{
+	width: 100%;
+}
+
+.rowHeaderButtons
+{
+	text-align: right;
+}
+
+#confirmDeleteDlgText
+{
+	text-align: justify;
+}
+
+.addMediatorArea
+{
+	margin: 2em 6em 2em 2em;
+	text-align: right;
+}
+
+.buttonArea
+{
+	text-align: right;
+	margin:2em;
+}
+
+#filterTable
+{
+	border-bottom-style: solid;
+	border-bottom-color: #ffd0d0;
+	border-bottom-width: 1px;	
+	width:90%;
+	margin-top: .75em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#filterCell
+{
+	width:15%;
+	font-size: xx-small;
+	text-align: left;
+	vertical-align: bottom;
+}
+
+td.data,
+th.data
+{
+	text-align: left;
+	vertical-align: middle;
+}
+
+select
+{
+	width:22em;
+	height: 5em;
+}

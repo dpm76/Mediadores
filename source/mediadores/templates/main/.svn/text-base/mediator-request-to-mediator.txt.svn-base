@@ -1,0 +1,29 @@
+﻿{% if not request.mediator.isCompany %}
+Estimado {{ request.mediator.name }} {{ request.mediator.surname }},
+{% else %}
+Estimados señores de {{ request.mediator.name }},
+{% endif %}
+
+Se ha realizado una solicitud de mediación. A continuación se adjunta información sobre la misma:
+
+Solicitante: {{ request.requester_name }} {{ request.requester_surname }}
+{% if not request.requester_byself %}
+Representado: {{ request.requester_representee }}
+{% endif %}
+
+Parte solicitante: {{ request.requester_party }}
+Parte contraria: {{ request.opponent_party }}
+
+Tipo de mediación: {{ request.get_mediation_mode_display }}
+Propósito:
+{{ request.purpose }}
+
+{% if request.amount > 0 %}
+Cantidad solicitada: {{ request.amount }} €
+{% endif %}
+
+En breve, nos pondremos en contacto para iniciar el proceso de mediación.
+
+Un cordial saludo,
+{{ request.institution.name }}
+ 

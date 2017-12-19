@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head %}
+	{% include "jqueryui-headers.html" %}
+	<link rel="stylesheet" href="/static-files/css/forms.css">
+	<link rel="stylesheet" href="/static-files/css/userconfig.css" />
+	<script type="text/javascript">
+		$(function(){
+			$( "#sendButton" ).button().click(function(event){
+				event.preventDefault();
+				$( "#id_userConfigForm" ).submit();
+				return false;
+			});
+			{% if userConfigForm %}
+			if(($("#id_password").val() == null) || ($("#id_password").val() == "")){
+				$( "#passwordChange" ).hide(); 
+			}
+			$( "#passwordChangeToggle" ).button().click(function(event){
+				event.preventDefault();
+				if($("#passwordChange").is(":visible")){
+					$("#passwordChange").hide("blind",null,500,null);
+				}else{
+					$("#passwordChange").show("blind",null,500,null);
+				}
+				return false;
+			});
+			{% endif %}
+			{% if done %}
+				$("#doneDlg").dialog({
+					modal:true,
+					buttons:{
+						Ok: function(event){
+							event.preventDefault();
+							$(this).dialog("close");
+							return false;
+						}
+					}
+				});
+			{% endif %}
+		});
+	</script>
+{% endblock %}
+
+{% block nav_path %} > Configuraci&oacute;n{% endblock %}
+
+{% block content %}
+	<h1>Configuraci&oacute;n</h1>
+	
+	<form id="id_userConfigForm" name="userConfigForm" class="centered" method="post" action=".">
+		{% csrf_token %}
+		{% if userConfigForm %}
+		<table>
+			{{ userConfigForm.as_table }}
+		</table>
+		
+		<div id="passwordChangeArea">
+			<div id="toggleArea">
+				<div id="passwordChangeToggle">Cambiar contrase&ntilde;a</div>
+			</div>		
+			<div id="passwordChange">
+		{% endif %}
+				<table>
+					{{ passwordChangeForm.as_table }}
+				</table>
+		{% if userConfigForm %}			
+			</div>
+		</div>
+		{% endif %}
+		<button id="sendButton">Enviar</button>
+	</form>
+	{% if done %}
+	<div id="doneDlg" title="Operaci&oacute;n realizada">
+		<table>
+			<tr>
+				<td><span class="ui-icon ui-icon-info"></span></td>
+				<td>Su configuraci&oacute;n ha sido cambiada correctamente en el sistema.</td>
+			</tr>
+		</table>
+	</div>
+	{% endif %}
+{% endblock %}

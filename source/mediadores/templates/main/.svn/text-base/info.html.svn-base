@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head %}
+	<link rel="stylesheet" href="/static-files/css/info.css"/>
+{% endblock %}
+
+{% block nav_path %}
+	> <a class="nav_link" href="/{{ institution.id }}/">{{ institution.name }}</a> > Informaci&oacute;n
+{% endblock %}
+
+{% block content %}
+	<h1>Informaci&oacute;n</h1>
+	<table id="tableMain">		
+		<tr>
+			<td id="contactData">
+				<table>
+					<tr><td>
+						<img src="{{ MEDIA_URL }}{{ institution.logo }}" alt="logo">
+					</td></tr>			
+					<tr><td>
+						{{ institution.address }}
+					</td></tr>
+					<tr><td>
+						{{ institution.postalcode }} - {{ institution.city }}
+					</td></tr>
+					<tr><td>
+						Tel&eacute;fono {{ institution.phone }}
+					</td></tr>
+					{% if institution.fax %}
+					<tr><td>
+						Fax {{ institution.fax }}
+					</td></tr>
+					{% endif %}
+					{% if institution.website %}
+					<tr><td><a href="{{ institution.website }}">{{ institution.website }}</a></td></tr>
+					{% endif %}
+					<tr><td>&nbsp;</td></tr>
+					<tr><td>
+						Tambi&eacute;n puede escribirnos mediante nuestro formulario de <a href="/contact/{{ institution.id }}/">contacto</a>.
+					</td></tr>
+				</table>
+			</td>
+			{% if institution.mapIframe %}
+			<td id="map">
+				{{ institution.mapIframe|safe }}
+			</td>
+			{% endif %}
+		</tr>
+	</table>			
+{% endblock %}

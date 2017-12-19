@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/mediadores/!svn/ver/38/mediadores/mediadores/main
+END
+enums.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/mediadores/!svn/ver/15/mediadores/mediadores/main/enums.py
+END
+tests.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/mediadores/!svn/ver/2/mediadores/mediadores/main/tests.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/mediadores/!svn/ver/2/mediadores/mediadores/main/__init__.py
+END
+admin.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/mediadores/!svn/ver/23/mediadores/mediadores/main/admin.py
+END
+forms.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/mediadores/!svn/ver/34/mediadores/mediadores/main/forms.py
+END
+views.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/mediadores/!svn/ver/41/mediadores/mediadores/main/views.py
+END
+models.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/mediadores/!svn/ver/35/mediadores/mediadores/main/models.py
+END
+search.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/mediadores/!svn/ver/18/mediadores/mediadores/main/search.py
+END
+image_widget.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/mediadores/!svn/ver/30/mediadores/mediadores/main/image_widget.py
+END

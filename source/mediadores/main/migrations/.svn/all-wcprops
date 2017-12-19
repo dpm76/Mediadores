@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/mediadores/!svn/ver/38/mediadores/mediadores/main/migrations
+END
+0012_auto__add_field_mediator_isCompany.py
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/mediadores/!svn/ver/18/mediadores/mediadores/main/migrations/0012_auto__add_field_mediator_isCompany.py
+END
+0006_auto__del_field_request_requester_address_postcode__del_field_request_.py
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/mediadores/!svn/ver/8/mediadores/mediadores/main/migrations/0006_auto__del_field_request_requester_address_postcode__del_field_request_.py
+END
+0010_auto__chg_field_userprofile_email__add_unique_userprofile_email.py
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/mediadores/!svn/ver/15/mediadores/mediadores/main/migrations/0010_auto__chg_field_userprofile_email__add_unique_userprofile_email.py
+END
+0005_auto__add_field_request_amount.py
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/mediadores/!svn/ver/8/mediadores/mediadores/main/migrations/0005_auto__add_field_request_amount.py
+END
+0009_auto__add_field_userprofile_email.py
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/mediadores/!svn/ver/15/mediadores/mediadores/main/migrations/0009_auto__add_field_userprofile_email.py
+END
+0011_auto__del_field_expertisearea_parent.py
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/mediadores/!svn/ver/17/mediadores/mediadores/main/migrations/0011_auto__del_field_expertisearea_parent.py
+END
+0014_auto__add_field_institution_contactEMail.py
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/mediadores/!svn/ver/23/mediadores/mediadores/main/migrations/0014_auto__add_field_institution_contactEMail.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/mediadores/!svn/ver/2/mediadores/mediadores/main/migrations/__init__.py
+END
+0003_auto__chg_field_mediator_insuranceEntity__chg_field_mediator_insurance.py
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/mediadores/!svn/ver/4/mediadores/mediadores/main/migrations/0003_auto__chg_field_mediator_insuranceEntity__chg_field_mediator_insurance.py
+END
+0001_initial.py
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/mediadores/!svn/ver/2/mediadores/mediadores/main/migrations/0001_initial.py
+END
+0002_auto__add_insuranceentity__add_field_mediator_expertiseDescription__ad.py
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/mediadores/!svn/ver/38/mediadores/mediadores/main/migrations/0002_auto__add_insuranceentity__add_field_mediator_expertiseDescription__ad.py
+END
+0013_auto__add_field_institutionadmin_canReceiveEMails.py
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/mediadores/!svn/ver/23/mediadores/mediadores/main/migrations/0013_auto__add_field_institutionadmin_canReceiveEMails.py
+END
+0008_auto__add_field_mediator_phoneNumber__add_field_mediator_mobileNumber_.py
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/mediadores/!svn/ver/15/mediadores/mediadores/main/migrations/0008_auto__add_field_mediator_phoneNumber__add_field_mediator_mobileNumber_.py
+END
+0007_auto__del_field_degree_expertiseArea__add_unique_degree_name.py
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/mediadores/!svn/ver/10/mediadores/mediadores/main/migrations/0007_auto__del_field_degree_expertiseArea__add_unique_degree_name.py
+END
+0004_auto__add_field_request_requester_byself__add_field_request_requester_.py
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/mediadores/!svn/ver/8/mediadores/mediadores/main/migrations/0004_auto__add_field_request_requester_byself__add_field_request_requester_.py
+END
+0015_auto__chg_field_userprofile_user__add_field_institution_phone__add_fie.py
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/mediadores/!svn/ver/25/mediadores/mediadores/main/migrations/0015_auto__chg_field_userprofile_user__add_field_institution_phone__add_fie.py
+END

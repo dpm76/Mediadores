@@ -1,0 +1,89 @@
+{% extends "main/edit_mediator.html" %}
+{% load i18n %}
+
+{% block nav_path %}
+	> Nuevo mediador
+{% endblock %}
+
+{% block scriptInit %}
+	var mediator = null;
+	$("#existingMediatorAlertDlg").dialog({
+		modal: true,
+		autoOpen: false,
+		width:600,
+		buttons:{
+			Cancelar: function(){
+				$(this).dialog("close");
+			},
+			Aceptar: function(){
+				if(mediator != null){
+					window.location.href="/edit/" + mediator.pk + "/"; 
+				}else{
+					alert("Mediador nulo");
+				}
+			}			
+		}
+	});
+
+	$("input:not(#id_nif), button, select").prop("disabled", true).addClass("ui-state-disabled");
+	var checked=false;
+	$("#id_nif").focus().keyup(function(){
+		var value = $(this).val();
+		if(value.length >= 3 && !checked){
+			$.post(
+				"/ajax/get-nif-list/",
+				{
+					"nif-start": value,
+					"csrfmiddlewaretoken": "{{ csrf_token }}"
+				},
+				function(data){
+					var availableNif = $.parseJSON(data);
+					$("#id_nif").autocomplete({source: availableNif});
+				}
+			);
+			checked=true;
+			$("input:not(#id_nif), button, select").prop("disabled", false).removeClass("ui-state-disabled");
+			
+		}else if(value.length < 3){
+			checked = false;
+			$("input:not(#id_nif), button, select").prop("disabled", true).addClass("ui-state-disabled");
+		}
+	}).blur(function(){
+		var nif = $(this).val();
+		$.post(
+			"/ajax/get-mediator/",
+			{
+				"csrfmiddlewaretoken": "{{ csrf_token }}",
+				"nif": nif
+			},
+			function(data){
+				if(data != ""){
+					var mediatorList = $.parseJSON(data);
+					if(mediatorList.length > 0){
+						mediator = mediatorList[0];
+						$("#existingMediatorAlertDlg").dialog("open");
+					}
+				}
+			});
+	});
+{% endblock %}
+
+{% block content %}
+	{{ block.super }}
+	<div id="existingMediatorAlertDlg" title="Mediador ya registrado">
+		<table>
+			<tr>
+				<td><span class="ui-icon ui-icon-info"></span></td>
+				<td>
+					<p>El mediador con el NIF o DNI introducido ya est&aacute; registrado en el sistema.</p>
+				</td>
+			</tr>
+		</table>		
+		
+		<p>
+			El mediador se incluir&aacute; en el registro de mediadores de {{ institution.name }} y a continuaci&oacute;n podr&aacute; editar su informaci&oacute;n, si fuese necesario.
+		</p>
+		
+	</div>
+{% endblock %}
+

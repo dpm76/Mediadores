@@ -1,0 +1,34 @@
+#map
+{
+	position: relative;
+	top:2em;
+	background-image: url('/static-files/img/mapaCastillayLeon.png');
+	width: 450px;
+	height: 359px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.marker
+{
+	position: absolute;
+	padding-left: 20px;
+	background-image: url("/static-files/img/marker_small.png");
+	background-position: left;
+	background-repeat: no-repeat;
+	min-height: 16px;
+	min-width: 16px;
+	text-decoration: none;
+	color: #202020;
+}
+
+.marker_hover
+{
+	background-image: url("/static-files/img/marker_big.png");
+	padding-left:36px;
+	height: 32px;
+	min-width: 32px;
+	line-height: 32px;
+	vertical-align: middle;
+	font-weight: bold; 
+}
