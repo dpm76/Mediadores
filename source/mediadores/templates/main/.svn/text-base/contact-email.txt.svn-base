@@ -1,3 +1,0 @@
-Se ha recibido un correo de {{ name }} {{ surname }}:
-
-{{ content }}

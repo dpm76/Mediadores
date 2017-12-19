@@ -1,9 +1,0 @@
-#sendTable
-{
-	margin-top: 1em;	
-}
-
-#sendButton
-{
-	float: right;
-}
