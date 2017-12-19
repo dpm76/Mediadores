@@ -160,6 +160,7 @@ local.properties
 
 # Project specific gitignore
 
+.svn/
 runenv/
 *.db
 source/mediadores/media/*
